@@ -47,9 +47,7 @@ passport.use(
       try {
         const user = await readByEmail(email);
         if (!user) {
-          // const error = new Error("USER NOT FOUND");
-          // error.statusCode = 401;
-          // return done(error);
+
           const info = { message: "USER NOT FOUND", statusCode: 401 };
           return done(null, false, info);
         }
@@ -57,9 +55,7 @@ passport.use(
         const passwordDb = user.password;
         const verify = verifyHashUtil(passwordForm, passwordDb);
         if (!verify) {
-          // const error = new Error("INVALID CREDENTIALS");
-          // error.statusCode = 401;
-          // return done(error);
+
           const info = { message: "INVALID CREDENTIALS", statusCode: 401 };
           return done(null, false, info);
         }
@@ -89,9 +85,7 @@ passport.use(
         //console.log(data);
         const { user_id, role } = data;
         if (role !== "ADMIN") {
-          // const error = new Error("NOT AUTHORIZED")
-          // error.statusCode = 403
-          // return done(error)
+
           const info = { message: "NOT AUTHORIZE", statusCode: 403 };
           return done(null, false, info);
         }
@@ -114,9 +108,7 @@ passport.use(
         const user = await readById(user_id);
         const { isOnline } = user;
         if (!isOnline) {
-          // const error = new Error("USER IS NOT ONLINE");
-          // error.statusCode = 401;
-          // return done(error);
+  
           const info = { message: "USER IS NOT ONLINE", statusCode: 401 };
           return done(null, false, info);
         }

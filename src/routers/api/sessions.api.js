@@ -23,7 +23,6 @@ export default sessionsRouter.getRouter();
 async function register(req, res, next) {
   const { _id } = req.user;
   const message = "User Registered!";
-  //return res.status(201).json({ message, user_id: _id });
   return res.json201(_id, message);
 }
 async function login(req, res, next) {

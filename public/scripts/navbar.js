@@ -2,7 +2,7 @@ async function verifyOnline() {
     try {
       // const token = localStorage.getItem("token");
       // if (token) {
-        const url = "http://localhost:8080/api/sessions/online";
+        const url = "http://localhost:9000/api/sessions/online";
         const opts = {
           method: "POST",
           headers: {
@@ -32,7 +32,7 @@ async function verifyOnline() {
           document
             .querySelector("#signout")
             .addEventListener("click", async () => {
-              const url = "http://localhost:8080/api/sessions/signout";
+              const url = "http://localhost:9000/api/sessions/signout";
               const opts = {
                 method: "POST",
                 headers: {
