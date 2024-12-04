@@ -10,8 +10,8 @@ class SessionsApiRouter extends CustomRouter {
   init = () => {
     this.create("/register", ["PUBLIC"], passportCb("register"), register);
     this.create("/login", ["PUBLIC"], passportCb("login"), login);
-    this.create("/signout", ["USER", "ADMIN"], passportCb("signout"), signout);
-    this.create("/online", ["USER", "ADMIN"], passportCb("online"), onlineToken);
+    this.create("/signout", ["USER", "ADMIN"], signout);
+    this.create("/online", ["USER", "ADMIN"], onlineToken);
     this.read("/google", ["PUBLIC"], passportCb("google", { scope: ["email", "profile"] }));
     this.read("/google/cb", ["PUBLIC"], passportCb("google"), google);
   };

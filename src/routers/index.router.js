@@ -3,7 +3,7 @@ import apiRouter from "./api/index.api.js";
 
 class IndexRouter extends CustomRouter {
   constructor() {
-    super(/* no necesito pasarle parametros a la clase CustomRouter */);
+    super();
     this.init();
   }
   init = () => {

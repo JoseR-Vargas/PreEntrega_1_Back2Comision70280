@@ -1,10 +1,5 @@
 import CustomRouter from "../../utils/CustomRouter.util.js";
-import {
-  create,
-  read,
-  update,
-  destroy,
-} from "../../data/mongo/managers/products.manager.js";
+import { create,read, update, destroy,} from "../../data/mongo/managers/products.manager.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
 import verifyToken from "../../middlewares/verifyToken.mid.js";
 import isAdmin from "../../middlewares/isAdmin.mid.js";

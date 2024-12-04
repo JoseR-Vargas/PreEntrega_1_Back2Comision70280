@@ -1,12 +1,13 @@
 import { Router } from "express";
+import jwt from "jsonwebtoken";
+import { readById } from "../data/mongo/managers/users.manager.js";
 
 class CustomRouter {
   constructor() {
     this._router = Router();
   }
   getRouter = () => this._router;
-  // applyCallbacks() depende de todos los middlewares que necesite ejecutar
-  // mapeamos los middlewares para que se ejecuten cada uno con (req, res, next)
+
   _applyCallbacks = (callbacks) =>
     callbacks.map((cb) => async (req, res, next) => {
       try {
@@ -31,7 +32,7 @@ class CustomRouter {
       if (policies.includes("PUBLIC")) return next();
       const token = req?.cookies?.token;
       if (!token) return res.json401();
-      const data = jwt.verify(token, process.env.SECRET);
+      const data = jwt.verify(token, process.env.SECRET_KEY);
       const { role, user_id } = data;
       if (!role || !user_id) return res.json401();
       if (
@@ -45,6 +46,8 @@ class CustomRouter {
       }
       return res.json403();
     } catch (error) {
+      console.log(error);
+      
       return res.json400(error.message);
     }
   };

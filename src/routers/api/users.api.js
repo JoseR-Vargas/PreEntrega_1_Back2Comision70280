@@ -1,10 +1,5 @@
 import CustomRouter from "../../utils/CustomRouter.util.js";
-import {
-  create,
-  read,
-  update,
-  destroy,
-} from "../../data/mongo/managers/users.manager.js";
+import { create,read, update, destroy,} from "../../data/mongo/managers/users.manager.js";
 
 class UsersApiRouter extends CustomRouter {
   constructor() {

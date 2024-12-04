@@ -2,12 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth2";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import {
-  create,
-  readByEmail,
-  readById,
-  update,
-} from "../data/mongo/managers/users.manager.js";
+import {create,readByEmail,readById,update,} from "../data/mongo/managers/users.manager.js";
 import { createHashUtil, verifyHashUtil } from "../utils/hash.util.js";
 import { createTokenUtil, verifyTokenUtil } from "../utils/token.util.js";
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BASE_URL } = process.env;
@@ -51,7 +46,7 @@ passport.use(
           const info = { message: "USER NOT FOUND", statusCode: 401 };
           return done(null, false, info);
         }
-        const passwordForm = password; /* req.body.password */
+        const passwordForm = password; 
         const passwordDb = user.password;
         const verify = verifyHashUtil(passwordForm, passwordDb);
         if (!verify) {
@@ -82,7 +77,6 @@ passport.use(
     },
     async (data, done) => {
       try {
-        //console.log(data);
         const { user_id, role } = data;
         if (role !== "ADMIN") {
 
@@ -114,6 +108,8 @@ passport.use(
         }
         return done(null, user);
       } catch (error) {
+        console.log(error);
+        
         return done(error);
       }
     }
@@ -130,7 +126,6 @@ passport.use(
       try {
         const { user_id } = data;
         await update(user_id, { isOnline: false });
-        // construiria un token que venza al instante
         return done(null, { user_id: null });
       } catch (error) {
         return done(error);
